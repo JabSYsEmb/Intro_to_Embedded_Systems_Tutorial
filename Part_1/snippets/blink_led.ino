@@ -9,7 +9,7 @@ void setup()
 {
     portDDRB  = (unsigned char *) 0x24;
     portDataB = (unsigned char *) 0x25;
-    *portDDRB = (*portDDRB) | (BIT5_MASK);
+    *portDDRB = (*portDDRB) | (BIT5_MASK); // Pin 13 is Output
 }
 
 void loop()
