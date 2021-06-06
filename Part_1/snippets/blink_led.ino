@@ -12,8 +12,7 @@ void setup()
     portDataB  = (unsigned char *) 0x25;
     portPinB   = (unsigned char *) 0x23;
     *portDDRB  = (*portDDRB)  | (BIT5_MASK); // Pin 13 is Output
-    *portDataB = (*portDataB) & (BIT4_MASK); // Pin 12 is Pull Up-resistor
-// *portPinB = (*portPinB) | (BIT4_MASK);
+    *portDataB = (BIT4_MASK); // Pin 12 is Pull Up-resistor
 }
 
 void loop()
