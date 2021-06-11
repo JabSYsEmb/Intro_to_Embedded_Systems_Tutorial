@@ -9,10 +9,10 @@ Using the ATmega328P pin configuration table and the Arduino Duemilanove Schemat
 ## **ATmega328P pin configuration**
 
 |Ping | Arduino Connection| GPIO           | Alternate Functions| Description                      |
-|:---:| :------------:    | :------------: |:---------------:   | :-----------:                    |
+|:---:| :------------     | :------------: |:---------------    | :-----------                     |
 |  1  | RESET             | PC5            | RESET              | Processor reset signal           |
 |     |                   |                | PCINT14            | Pin change interrupt 14          |
-|  2  | J1-1 "0"          | PD0            | RXD                |   USART receive                  |
+|  2  | J1-1 "0"          | PD0            | RXD                | USART receive                    |
 |     |                   |                | PCINT16            | Pin change interrupt 16          |
 |  3  | J1-2 "1"          | PD1            | TXD                | USART transmit                   |
 |     |                   |                | PCINT17            | Pin change interrupt 17          |
