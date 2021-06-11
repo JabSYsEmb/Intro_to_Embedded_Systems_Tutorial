@@ -42,22 +42,32 @@
 #define BIT8_MASK 0B10000000
 #define BIT0_MASK 0B00000001
 
-unsigned char *sReg, *PCICR, *DDRB, *dataB, *portB;
+unsigned char *DDRB;
+unsigned char *SREG; 
+unsigned char *PCICR;
+unsigned char *dataB;
+unsigned char *portB;
+unsigned char *PCMSK0;
 
 void setup(){
-    sReg    = (unsigned char *) 0x5F; // status Register
-    PCICR   = (unsigned char *) 0x68; // pin change interrupt 
+    SREG    = (unsigned char *) 0x5F; // status Register
+    PCICR   = (unsigned char *) 0x68; // pin change interrupt control register
     dataB   = (unsigned char *) 0x25; // data register
     DDRB    = (unsigned char *) 0x24; // data direction register
     portB   = (unsigned char *) 0x23; // port pin b
+    PCMSK0  = (unsigned char *) 0x6B; // PCMSK0
 
-    DDRB    = (*DDRB)  | BIT0_MASK;
-    *sReg   = (*sReg)  | BIT8_MASK;
-    *PCICR  = (*PCICR) | BIT0_MASK;
+    *DDRB   = (*DDRB)   | BIT0_MASK; // 0-bit is output
+
+    *SREG   = (*SREG)   | BIT8_MASK; // I-bit of SREG
+    *PCICR  = (*PCICR)  | BIT0_MASK; // Enable port B (PCINT0...7) - PCIE0
+    *PCMSK0 = (*PCMSK0) | BIT0_MASK; // PCINT0 Enabled
 }
 
 void loop(){
-
+  *dataB = (*dataB) & (~BIT0_MASK);
 }
 
-ISR ()
+ISR (PCINT0_vect){
+  *dataB |= BIT0_MASK; 
+}
