@@ -41,6 +41,7 @@
 
 #define BIT8_MASK 0B10000000
 #define BIT0_MASK 0B00000001
+#define BIT5_MASK 0B00100000
 
 unsigned char *DDRB;
 unsigned char *SREG; 
@@ -65,9 +66,9 @@ void setup(){
 }
 
 void loop(){
-  *dataB = (*dataB) & (~BIT0_MASK);
+  *dataB = (~BIT5_MASK); // set the port to low
 }
 
 ISR (PCINT0_vect){
-  *dataB |= BIT0_MASK; 
+  *dataB = (BIT5_MASK); // set the port to high
 }
